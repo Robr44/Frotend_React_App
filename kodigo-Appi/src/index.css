@@ -11,6 +11,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --color-primary: #3a0087;   /* Morado intenso */
+  --color-secondary: #5c1aa1; /* Morado medio */
+  --color-button: #0e68c1;    /* Azul */
+  --color-letra: #f4f4f9;   /* Blanco */   
 }
 
 a {
@@ -65,4 +70,23 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+.navbarcontent, .footercontent {
+  background-color: var(--color-primary) !important;
+}
+
+.navbarcontent .nav-link,
+.footercontent .text-light {
+  color: var(--color-letra) !important;
+}
+
+.navbarcontent .nav-link:hover {
+  color: var(--color-button) !important;
+}
+
+.footercontent {
+  border-top: 3px solid var(--color-secondary);
+  text-align: center;
 }

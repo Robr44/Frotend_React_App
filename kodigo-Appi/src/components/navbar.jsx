@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const navigate = useNavigate();
-  // const token = localStorage.getItem("token"); // Ignorar el token por ahora
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -11,14 +10,12 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav className="navbar navbar-expand-lg navbarcontent fixed-top">
       <div className="container">
-        {/* Marca */}
-        <Link className="navbar-brand" to="/">Kodigo App</Link>
+        <Link className="navbar-brand text-light fw-bold" to="/">Kodigo App</Link>
 
-        {/* Botón responsive */}
         <button
-          className="navbar-toggler"
+          className="navbar-toggler bg-light"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -29,7 +26,6 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Links */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
@@ -43,6 +39,11 @@ export default function Navbar() {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/login">Login</Link>
+            </li>
+            <li className="nav-item">
+              <button className="btn btn-info" style={{ backgroundColor: "var(--color-button)", color: "white" }} onClick={handleLogout}>
+                Cerrar sesión
+              </button>
             </li>
           </ul>
         </div>
