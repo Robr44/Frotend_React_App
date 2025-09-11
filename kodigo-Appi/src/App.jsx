@@ -1,13 +1,18 @@
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/navbar.jsx";
+import { LandingPage } from "./views/LandingPage.jsx";
 
-import './App.css'
-
-function App() {
-
+export default function App() {
   return (
-    <>
-     <h1>Hola</h1>
-    </>
-  )
+    <div>
+      <Navbar />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/register" element={<div>Registro</div>} />
+          <Route path="/login" element={<div>Login</div>} />
+          <Route path="/dashboard" element={<div>Dashboard</div>} />
+        </Routes>
+    </div>
+  );
 }
-
-export default App
