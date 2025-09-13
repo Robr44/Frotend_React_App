@@ -6,6 +6,7 @@ import { Register } from "./views/Register.jsx";
 import { Dashboard } from "./views/Dashboard.jsx";
 import { Login } from "./views/Login.jsx";
 import Footer from "./components/Footer.jsx";
+import './App.css';
 
 export default function App() {
   return (
