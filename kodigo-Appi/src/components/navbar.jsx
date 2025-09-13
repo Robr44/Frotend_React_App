@@ -1,18 +1,28 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token);
+  }, [location]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    setIsAuthenticated(false);
     navigate("/login");
   };
 
   return (
     <nav className="navbar navbar-expand-lg navbarcontent fixed-top">
       <div className="container">
-        <Link className="navbar-brand text-light fw-bold" to="/">Kodigo App</Link>
+        <Link className="navbar-brand text-light fw-bold" to="/">
+          Kodigo App
+        </Link>
 
         <button
           className="navbar-toggler bg-light"
@@ -29,22 +39,54 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/">Inicio</Link>
+              <Link 
+                className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} 
+                to="/"
+              >
+                Inicio
+              </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/dashboard">Dashboard</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/register">Registro</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">Login</Link>
-            </li>
-            <li className="nav-item">
-              <button className="btn btn-info" style={{ backgroundColor: "var(--color-button)", color: "white" }} onClick={handleLogout}>
-                Cerrar sesión
-              </button>
-            </li>
+            
+            {isAuthenticated ? (
+              <>
+                <li className="nav-item">
+                  <Link 
+                    className={`nav-link ${location.pathname === '/dashboard' ? 'active' : ''}`} 
+                    to="/dashboard"
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <button 
+                    className="btn btn-info" 
+                    style={{ backgroundColor: "var(--color-button)", color: "white" }} 
+                    onClick={handleLogout}
+                  >
+                    Cerrar sesión
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="nav-item">
+                  <Link 
+                    className={`nav-link ${location.pathname === '/register' ? 'active' : ''}`} 
+                    to="/register"
+                  >
+                    Registro
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link 
+                    className={`nav-link ${location.pathname === '/login' ? 'active' : ''}`} 
+                    to="/login"
+                  >
+                    Login
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>
