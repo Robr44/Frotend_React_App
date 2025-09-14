@@ -13,12 +13,12 @@ export const LandingPage = () => {
     const token = localStorage.getItem('token');
     setIsAuthenticated(!!token);
     fetchBootcamps(token);
-    
+
     // Configurar rotación automática de testimonios
     const testimonialInterval = setInterval(() => {
       setActiveTestimonial(prev => (prev + 1) % testimonials.length);
     }, 5000);
-    
+
     return () => clearInterval(testimonialInterval);
   }, []);
 
@@ -58,36 +58,38 @@ export const LandingPage = () => {
     try {
       setLoading(true);
       let response;
-      
+
       if (token) {
         response = await api.get('/bootcamps/all');
       } else {
         // Para usuarios no autenticados, usa datos de ejemplo
-        response = { data: [
-          {
-            id: 1,
-            name: "Java Developer",
-            description: "Aprende Java desde cero hasta un nivel avanzado, incluyendo el desarrollo de aplicaciones backend robustas.",
-            technologies: ["Java", "Spring Boot", "MySQL"],
-            active: true
-          },
-          {
-            id: 2,
-            name: "Fullstack Jr",
-            description: "Curso orientado a aprender desarrollo Fullstack con ReactJS, Laravel y MySQL.",
-            technologies: ["ReactJS", "Laravel", "MySQL"],
-            active: true
-          },
-          {
-            id: 3,
-            name: "Data Analytics",
-            description: "Curso de análisis de datos con enfoque en Python, PowerBI y R para generar insights y visualización de datos.",
-            technologies: ["Python", "PowerBI", "R"],
-            active: true
-          }
-        ]};
+        response = {
+          data: [
+            {
+              id: 1,
+              name: "Java Developer",
+              description: "Aprende Java desde cero hasta un nivel avanzado, incluyendo el desarrollo de aplicaciones backend robustas.",
+              technologies: ["Java", "Spring Boot", "MySQL"],
+              active: true
+            },
+            {
+              id: 2,
+              name: "Fullstack Jr",
+              description: "Curso orientado a aprender desarrollo Fullstack con ReactJS, Laravel y MySQL.",
+              technologies: ["ReactJS", "Laravel", "MySQL"],
+              active: true
+            },
+            {
+              id: 3,
+              name: "Data Analytics",
+              description: "Curso de análisis de datos con enfoque en Python, PowerBI y R para generar insights y visualización de datos.",
+              technologies: ["Python", "PowerBI", "R"],
+              active: true
+            }
+          ]
+        };
       }
-      
+
       setBootcamps(response.data);
       setError('');
     } catch (err) {
@@ -122,7 +124,7 @@ export const LandingPage = () => {
           <div className="row">
             {[1, 2, 3].map(item => (
               <div key={item} className="col-md-6 col-lg-4 mb-4">
-                <div className="card loading-card" style={{backgroundColor: '#f0f0f0'}}></div>
+                <div className="card loading-card" style={{ backgroundColor: '#f0f0f0' }}></div>
               </div>
             ))}
           </div>
@@ -141,8 +143,8 @@ export const LandingPage = () => {
               <h1 className="display-4 fw-bold text-primary mb-4">
                 Transforma tu carrera en <span className="text-secondary">tecnología</span>
               </h1>
-              <p className="lead mb-4" style={{color: 'var(--color-secondary)'}}>
-                Bootcamps intensivos para convertirte en desarrollador profesional. 
+              <p className="lead mb-4" style={{ color: 'var(--color-secondary)' }}>
+                Bootcamps intensivos para convertirte en desarrollador profesional.
                 Aprende las tecnologías más demandadas con expertos de la industria.
               </p>
               <div className="d-flex flex-wrap gap-3 hero-buttons">
@@ -163,9 +165,9 @@ export const LandingPage = () => {
               </div>
             </div>
             <div className="col-lg-6 text-center animate-fade-in-up delay-1">
-              <img 
-                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
-                alt="Persona programando" 
+              <img
+                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                alt="Persona programando"
                 className="img-fluid rounded shadow"
                 style={{ maxHeight: '400px', transform: 'rotate(3deg)' }}
               />
@@ -201,41 +203,41 @@ export const LandingPage = () => {
       </section>
 
       {/* Bootcamps Section */}
-      <section className="py-5" style={{backgroundColor: 'var(--color-letra)'}}>
+      <section className="py-5" style={{ backgroundColor: 'var(--color-letra)' }}>
         <div className="container">
           <div className="text-center mb-5">
             <h2 className="display-5 fw-bold text-primary mb-3 animate-fade-in">Nuestros Bootcamps</h2>
-            <p className="lead animate-fade-in" style={{color: 'var(--color-secondary)'}}>Programas intensivos diseñados para impulsar tu carrera tech</p>
+            <p className="lead animate-fade-in" style={{ color: 'var(--color-secondary)' }}>Programas intensivos diseñados para impulsar tu carrera tech</p>
           </div>
-          
+
           {error && (
             <div className="alert alert-warning text-center" role="alert">
               {error}
             </div>
           )}
-          
+
           <div className="row g-4">
             {bootcamps.filter(bootcamp => bootcamp.active).map((bootcamp, index) => (
               <div key={bootcamp.id} className="col-md-6 col-lg-4">
-                <div className="card h-100 shadow-sm bootcamp-card animate-fade-in-up" style={{animationDelay: `${index * 0.2}s`}}>
+                <div className="card h-100 shadow-sm bootcamp-card animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
                   <div className="position-relative">
-                    <img 
-                      src={bootcampImages[bootcamp.id] || "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"} 
-                      className="card-img-top bootcamp-image" 
+                    <img
+                      src={bootcampImages[bootcamp.id] || "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"}
+                      className="card-img-top bootcamp-image"
                       alt={bootcamp.name}
                     />
                     <div className="card-overlay">
-                      <span className="badge" style={{backgroundColor: 'var(--color-button)', color: 'white'}}>Disponible</span>
+                      <span className="badge">Disponible</span>
                     </div>
                   </div>
                   <div className="card-body p-4">
-                    <h3 className="h5 card-title text-primary">{bootcamp.name}</h3>
-                    <p className="card-text" style={{color: 'var(--color-secondary)'}}>{bootcamp.description}</p>
+                    <h3 className="h5 card-title">{bootcamp.name}</h3>
+                    <p className="card-text">{bootcamp.description}</p>
                     <div className="mt-4">
-                      <h6 className="mb-2" style={{color: 'var(--color-primary)'}}>Tecnologías:</h6>
+                      <h6 className="mb-2">Tecnologías:</h6>
                       <div className="d-flex flex-wrap gap-2">
                         {bootcamp.technologies.map((tech, index) => (
-                          <span key={index} className="badge bg-secondary tech-tag">{tech}</span>
+                          <span key={index} className="badge tech-tag">{tech}</span>
                         ))}
                       </div>
                     </div>
@@ -259,19 +261,19 @@ export const LandingPage = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-5 parallax-section" style={{backgroundImage: 'url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80)'}}>
+      <section className="py-5 parallax-section" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80)' }}>
         <div className="container">
           <div className="text-center mb-5">
             <h2 className="display-5 fw-bold text-white mb-3">Lo que dicen nuestros estudiantes</h2>
             <p className="lead text-white-50">Experiencias reales de transformación profesional</p>
           </div>
-          
+
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="card testimonial-card animate-fade-in">
                 <div className="card-body p-4 text-center">
-                  <img 
-                    src={testimonials[activeTestimonial].avatar} 
+                  <img
+                    src={testimonials[activeTestimonial].avatar}
                     alt={testimonials[activeTestimonial].name}
                     className="rounded-circle mb-3"
                     width="80"
@@ -282,7 +284,7 @@ export const LandingPage = () => {
                   <p className="card-text lead">"{testimonials[activeTestimonial].text}"</p>
                 </div>
               </div>
-              
+
               <div className="d-flex justify-content-center mt-4">
                 {testimonials.map((_, index) => (
                   <button
@@ -304,36 +306,36 @@ export const LandingPage = () => {
         <div className="container">
           <div className="text-center mb-5">
             <h2 className="display-5 fw-bold text-primary mb-3">¿Por qué elegirnos?</h2>
-            <p className="lead" style={{color: 'var(--color-secondary)'}}>Ventajas de aprender con nuestros bootcamps</p>
+            <p className="lead" style={{ color: 'var(--color-secondary)' }}>Ventajas de aprender con nuestros bootcamps</p>
           </div>
-          
+
           <div className="row g-4">
             <div className="col-md-4">
               <div className="text-center p-4 h-100 feature-card animate-fade-in-up">
-                <div className="feature-icon rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" 
-                  style={{width: '80px', height: '80px', backgroundColor: 'var(--color-primary)', color: 'white'}}>
+                <div className="feature-icon rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center"
+                  style={{ width: '80px', height: '80px', backgroundColor: 'var(--color-primary)', color: 'white' }}>
                   <i className="bi bi-speedometer2 fs-2"></i>
                 </div>
                 <h4 className="h5 mb-3 text-primary">Aprendizaje intensivo</h4>
                 <p className="text-muted">Programas concentrados que te llevan de principiante a profesional en pocos meses.</p>
               </div>
             </div>
-            
+
             <div className="col-md-4">
               <div className="text-center p-4 h-100 feature-card animate-fade-in-up delay-1">
-                <div className="feature-icon rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" 
-                  style={{width: '80px', height: '80px', backgroundColor: 'var(--color-primary)', color: 'white'}}>
+                <div className="feature-icon rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center"
+                  style={{ width: '80px', height: '80px', backgroundColor: 'var(--color-primary)', color: 'white' }}>
                   <i className="bi bi-people-fill fs-2"></i>
                 </div>
                 <h4 className="h5 mb-3 text-primary">Instructores expertos</h4>
                 <p className="text-muted">Aprende de profesionales con experiencia real en la industria tecnológica.</p>
               </div>
             </div>
-            
+
             <div className="col-md-4">
               <div className="text-center p-4 h-100 feature-card animate-fade-in-up delay-2">
-                <div className="feature-icon rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center" 
-                  style={{width: '80px', height: '80px', backgroundColor: 'var(--color-primary)', color: 'white'}}>
+                <div className="feature-icon rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center"
+                  style={{ width: '80px', height: '80px', backgroundColor: 'var(--color-primary)', color: 'white' }}>
                   <i className="bi bi-briefcase-fill fs-2"></i>
                 </div>
                 <h4 className="h5 mb-3 text-primary">Enfoque laboral</h4>
@@ -349,9 +351,9 @@ export const LandingPage = () => {
         <div className="container">
           <div className="text-center mb-5">
             <h2 className="display-5 fw-bold text-primary mb-3">Preguntas frecuentes</h2>
-            <p className="lead" style={{color: 'var(--color-secondary)'}}>Resolvemos tus dudas más comunes</p>
+            <p className="lead" style={{ color: 'var(--color-secondary)' }}>Resolvemos tus dudas más comunes</p>
           </div>
-          
+
           <div className="row justify-content-center">
             <div className="col-lg-8">
               <div className="accordion" id="faqAccordion">
@@ -367,7 +369,7 @@ export const LandingPage = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="accordion-item">
                   <h3 className="accordion-header">
                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
@@ -380,7 +382,7 @@ export const LandingPage = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="accordion-item">
                   <h3 className="accordion-header">
                     <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
@@ -400,18 +402,18 @@ export const LandingPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-5" style={{backgroundColor: 'var(--color-primary)', color: 'white'}}>
+      <section className="py-5" style={{ backgroundColor: 'var(--color-primary)', color: 'white' }}>
         <div className="container">
           <div className="row justify-content-center text-center">
             <div className="col-lg-8">
               <h2 className="display-5 fw-bold mb-4">¿Listo para transformar tu carrera?</h2>
               <p className="lead mb-4">Únete a cientos de estudiantes que ya comenzaron su journey en tecnología</p>
               {!isAuthenticated ? (
-                <Link to="/register" className="btn btn-light btn-lg px-5 animate-fade-in" style={{color: 'var(--color-primary)'}}>
+                <Link to="/register" className="btn btn-light btn-lg px-5 animate-fade-in" style={{ color: 'var(--color-primary)' }}>
                   Comienza ahora
                 </Link>
               ) : (
-                <Link to="/dashboard" className="btn btn-light btn-lg px-5" style={{color: 'var(--color-primary)'}}>
+                <Link to="/dashboard" className="btn btn-light btn-lg px-5" style={{ color: 'var(--color-primary)' }}>
                   Explorar bootcamps
                 </Link>
               )}
