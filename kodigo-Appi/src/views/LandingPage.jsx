@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import api from '../api/axios';
 
 export const LandingPage = () => {
@@ -22,11 +22,36 @@ export const LandingPage = () => {
     return () => clearInterval(testimonialInterval);
   }, []);
 
-  // Datos de imágenes para cada bootcamp
+  // Función para manejar errores de carga de imágenes
+  const handleImageError = (e, fallbackUrl) => {
+    e.target.src = fallbackUrl;
+  };
+
+  // Datos de imágenes para cada bootcamp con fallbacks
   const bootcampImages = {
-    1: "https://images.unsplash.com/photo-1581276879432-15e50529f34b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-    2: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-    3: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    1: {
+      primary: "/images/bootcamps/java.jpg",
+      fallback: "https://images.unsplash.com/photo-1581276879432-15e50529f34b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    },
+    2: {
+      primary: "/images/bootcamps/fullstack.jpg",
+      fallback: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    },
+    3: {
+      primary: "/images/bootcamps/data-analytics.jpg",
+      fallback: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+    }
+  };
+
+  // Imágenes para otras secciones
+  const heroImage = {
+    primary: "/images/heroes/programming.jpg",
+    fallback: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+  };
+
+  const testimonialBackground = {
+    primary: "/images/testimonials/background.jpg",
+    fallback: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80"
   };
 
   // Datos de testimonios
@@ -36,21 +61,30 @@ export const LandingPage = () => {
       name: "María González",
       role: "Desarrolladora Java",
       text: "El bootcamp de Java transformó mi carrera. En 6 meses pasé de no saber programar a trabajar en una empresa tecnológica.",
-      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+      avatar: {
+        primary: "/images/testimonials/avatar1.jpg",
+        fallback: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+      }
     },
     {
       id: 2,
       name: "Carlos Rodríguez",
       role: "Desarrollador Fullstack",
       text: "Increíble experiencia de aprendizaje. Los instructores son expertos de la industria y el plan de estudios está muy bien estructurado.",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+      avatar: {
+        primary: "/images/testimonials/avatar2.jpg",
+        fallback: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+      }
     },
     {
       id: 3,
       name: "Ana Martínez",
       role: "Analista de Datos",
       text: "El bootcamp de Data Analytics me dio las herramientas necesarias para cambiar mi carrera. Ahora trabajo en una empresa de análisis financiero.",
-      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+      avatar: {
+        primary: "/images/testimonials/avatar3.jpg",
+        fallback: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+      }
     }
   ];
 
@@ -166,7 +200,8 @@ export const LandingPage = () => {
             </div>
             <div className="col-lg-6 text-center animate-fade-in-up delay-1">
               <img
-                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                src={heroImage.primary}
+                onError={(e) => handleImageError(e, heroImage.fallback)}
                 alt="Persona programando"
                 className="img-fluid rounded shadow"
                 style={{ maxHeight: '400px', transform: 'rotate(3deg)' }}
@@ -222,7 +257,8 @@ export const LandingPage = () => {
                 <div className="card h-100 shadow-sm bootcamp-card animate-fade-in-up" style={{ animationDelay: `${index * 0.2}s` }}>
                   <div className="position-relative">
                     <img
-                      src={bootcampImages[bootcamp.id] || "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"}
+                      src={bootcampImages[bootcamp.id]?.primary}
+                      onError={(e) => handleImageError(e, bootcampImages[bootcamp.id]?.fallback)}
                       className="card-img-top bootcamp-image"
                       alt={bootcamp.name}
                     />
@@ -261,7 +297,7 @@ export const LandingPage = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-5 parallax-section" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80)' }}>
+      <section className="py-5 parallax-section" style={{ backgroundImage: `url(${testimonialBackground.primary})` }}>
         <div className="container">
           <div className="text-center mb-5">
             <h2 className="display-5 fw-bold text-white mb-3">Lo que dicen nuestros estudiantes</h2>
@@ -273,7 +309,8 @@ export const LandingPage = () => {
               <div className="card testimonial-card animate-fade-in">
                 <div className="card-body p-4 text-center">
                   <img
-                    src={testimonials[activeTestimonial].avatar}
+                    src={testimonials[activeTestimonial].avatar.primary}
+                    onError={(e) => handleImageError(e, testimonials[activeTestimonial].avatar.fallback)}
                     alt={testimonials[activeTestimonial].name}
                     className="rounded-circle mb-3"
                     width="80"
