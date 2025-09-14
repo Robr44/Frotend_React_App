@@ -474,3 +474,90 @@ main {
     color: #f4f4f9;
   }
 }
+
+
+/* Corrección de contraste para las cards */
+.bootcamp-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid rgba(58, 0, 135, 0.1);
+  color: #212529 !important; /* Texto oscuro para máximo contraste */
+}
+
+.bootcamp-card .card-title {
+  color: var(--color-primary) !important;
+  font-weight: 700;
+}
+
+.bootcamp-card .card-text {
+  color: #495057 !important; /* Texto más oscuro para mejor contraste */
+  line-height: 1.6;
+}
+
+.bootcamp-card h6 {
+  color: var(--color-primary) !important;
+  font-weight: 600;
+}
+
+/* Corrección para las feature cards */
+.feature-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid rgba(58, 0, 135, 0.1);
+  color: #212529 !important; /* Texto oscuro para máximo contraste */
+}
+
+.feature-card h4 {
+  color: var(--color-primary) !important;
+  font-weight: 700;
+}
+
+.feature-card p {
+  color: #495057 !important; /* Texto más oscuro para mejor contraste */
+  line-height: 1.6;
+}
+
+/* Mejora de contraste para badges */
+.badge {
+  font-weight: 600;
+  padding: 0.5em 0.8em;
+}
+
+/* Mejoras de sombra para mejor contraste visual */
+.bootcamp-card,
+.feature-card {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08) !important;
+}
+
+.bootcamp-card:hover,
+.feature-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Asegurar contraste en todos los dispositivos */
+@media (max-width: 768px) {
+  .bootcamp-card,
+  .feature-card {
+    background: #ffffff !important; /* Fondo blanco sólido en móviles */
+  }
+}
+
+/* Corrección para el texto en el overlay de la card */
+.card-overlay .badge {
+  background-color: var(--color-button) !important;
+  color: white !important;
+  font-size: 0.9rem;
+}
+
+/* Mejora de contraste para el texto de tecnologías */
+.tech-tag {
+  background-color: var(--color-secondary) !important;
+  color: white !important;
+  font-weight: 500;
+}
+
+.tech-tag:hover {
+  background-color: var(--color-primary) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/******************************************************************************************/
