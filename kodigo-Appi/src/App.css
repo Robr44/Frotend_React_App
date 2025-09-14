@@ -9,6 +9,7 @@ html, body, #root {
   width: 100%;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 /* Contenedor principal */
@@ -29,6 +30,7 @@ main {
   right: 0;
   left: 0;
   z-index: 1030;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Ajustes de contenido para que no quede oculto tras el navbar */
@@ -39,4 +41,15 @@ main {
 /* Mejoras de responsividad para el footer */
 .footercontent {
   width: 100%;
+}
+
+/* Mejoras para el accordion de FAQ */
+.accordion-button:not(.collapsed) {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(58, 0, 135, 0.25);
+  border-color: var(--color-primary);
 }

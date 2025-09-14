@@ -259,3 +259,218 @@ main {
   max-width: 100%;
   height: auto;
 }
+
+/* Estilos mejorados para experiencia de usuario */
+
+/* Animaciones y transiciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.2s;
+}
+
+.delay-2 {
+  animation-delay: 0.4s;
+}
+
+.delay-3 {
+  animation-delay: 0.6s;
+}
+
+/* Efectos de hover mejorados */
+.bootcamp-card {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.bootcamp-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.bootcamp-image {
+  transition: transform 0.5s ease;
+  height: 200px;
+  object-fit: cover;
+}
+
+.bootcamp-card:hover .bootcamp-image {
+  transform: scale(1.1);
+}
+
+/* Mejoras de responsividad */
+@media (max-width: 1200px) {
+  .display-4 {
+    font-size: 2.8rem;
+  }
+  
+  .display-5 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-section {
+    padding: 5rem 0 3rem;
+    min-height: auto;
+  }
+  
+  .display-4 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-buttons .btn {
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .display-4 {
+    font-size: 2.2rem;
+  }
+  
+  .display-5 {
+    font-size: 2rem;
+  }
+  
+  .feature-icon {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  
+  .feature-icon i {
+    font-size: 1.5rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .display-4 {
+    font-size: 2rem;
+  }
+  
+  .hero-section {
+    padding: 4rem 0 2rem;
+  }
+  
+  .bootcamp-card {
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+  }
+  
+  .hero-buttons .btn {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Mejoras visuales */
+.bootcamp-card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+}
+
+.bootcamp-card:hover .card-overlay {
+  opacity: 1;
+}
+
+.tech-tag {
+  transition: all 0.3s ease;
+}
+
+.tech-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Loading animation mejorado */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.loading-card {
+  animation: pulse 1.5s infinite ease-in-out;
+  height: 350px;
+  border-radius: 12px;
+}
+
+/* Mejoras de accesibilidad */
+.btn:focus,
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(58, 0, 135, 0.25);
+}
+
+/* Efectos parallax suaves */
+.parallax-section {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Mejoras para dark mode */
+@media (prefers-color-scheme: dark) {
+  .bootcamp-card {
+    background-color: #2a2a2a;
+    color: #f4f4f9;
+  }
+  
+  .feature-card {
+    background-color: #2a2a2a;
+    color: #f4f4f9;
+  }
+}
