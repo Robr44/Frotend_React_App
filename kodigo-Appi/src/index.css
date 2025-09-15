@@ -33,6 +33,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  width: 100%;
 }
 
 h1 {
@@ -72,7 +73,6 @@ button:focus-visible {
   }
 }
 
-
 .navbarcontent, .footercontent {
   background-color: var(--color-primary) !important;
 }
@@ -90,3 +90,474 @@ button:focus-visible {
   border-top: 3px solid var(--color-secondary);
   text-align: center;
 }
+
+/* Estilos responsivos añadidos */
+.landing-page {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-section {
+  padding: 7rem 0 4rem;
+  background: linear-gradient(135deg, var(--color-letra) 0%, #e9ecef 100%);
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.bootcamp-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.125);
+  border-radius: 0.5rem;
+  height: 100%;
+}
+
+.bootcamp-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.feature-card {
+  transition: transform 0.3s ease;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  background-color: var(--color-letra);
+  height: 100%;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.text-primary {
+  color: var(--color-primary) !important;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-letra);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: var(--color-letra);
+}
+
+.btn-outline-primary {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-letra);
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 6rem 0 3rem;
+    text-align: center;
+  }
+  
+  .display-4 {
+    font-size: 2.5rem;
+  }
+  
+  .lead {
+    font-size: 1.1rem;
+  }
+  
+  .btn-lg {
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .feature-card, .bootcamp-card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-section {
+    padding: 5rem 0 2rem;
+  }
+  
+  .display-4 {
+    font-size: 2rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    gap: 1rem !important;
+  }
+  
+  .hero-buttons .btn {
+    width: 100%;
+  }
+}
+
+/* Asegurar que el contenido ocupe todo el ancho */
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+/* Ajustes para el navbar fijo */
+main {
+  padding-top: 76px;
+}
+
+/* Mejoras visuales generales */
+.card {
+  border: 1px solid rgba(0,0,0,0.125);
+  border-radius: 0.5rem;
+}
+
+.badge {
+  font-weight: 500;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Estilos mejorados para experiencia de usuario */
+
+/* Animaciones y transiciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.2s;
+}
+
+.delay-2 {
+  animation-delay: 0.4s;
+}
+
+.delay-3 {
+  animation-delay: 0.6s;
+}
+
+/* Efectos de hover mejorados */
+.bootcamp-card {
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.bootcamp-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.bootcamp-image {
+  transition: transform 0.5s ease;
+  height: 200px;
+  object-fit: cover;
+}
+
+.bootcamp-card:hover .bootcamp-image {
+  transform: scale(1.1);
+}
+
+/* Mejoras de responsividad */
+@media (max-width: 1200px) {
+  .display-4 {
+    font-size: 2.8rem;
+  }
+  
+  .display-5 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-section {
+    padding: 5rem 0 3rem;
+    min-height: auto;
+  }
+  
+  .display-4 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-buttons .btn {
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .display-4 {
+    font-size: 2.2rem;
+  }
+  
+  .display-5 {
+    font-size: 2rem;
+  }
+  
+  .feature-icon {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  
+  .feature-icon i {
+    font-size: 1.5rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .display-4 {
+    font-size: 2rem;
+  }
+  
+  .hero-section {
+    padding: 4rem 0 2rem;
+  }
+  
+  .bootcamp-card {
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+  }
+  
+  .hero-buttons .btn {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Mejoras visuales */
+.bootcamp-card {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+}
+
+.bootcamp-card:hover .card-overlay {
+  opacity: 1;
+}
+
+.tech-tag {
+  transition: all 0.3s ease;
+}
+
+.tech-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Loading animation mejorado */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.loading-card {
+  animation: pulse 1.5s infinite ease-in-out;
+  height: 350px;
+  border-radius: 12px;
+}
+
+/* Mejoras de accesibilidad */
+.btn:focus,
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(58, 0, 135, 0.25);
+}
+
+/* Efectos parallax suaves */
+.parallax-section {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Mejoras para dark mode */
+@media (prefers-color-scheme: dark) {
+  .bootcamp-card {
+    background-color: #2a2a2a;
+    color: #f4f4f9;
+  }
+  
+  .feature-card {
+    background-color: #2a2a2a;
+    color: #f4f4f9;
+  }
+}
+
+
+/* Corrección de contraste para las cards */
+.bootcamp-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid rgba(58, 0, 135, 0.1);
+  color: #212529 !important; /* Texto oscuro para máximo contraste */
+}
+
+.bootcamp-card .card-title {
+  color: var(--color-primary) !important;
+  font-weight: 700;
+}
+
+.bootcamp-card .card-text {
+  color: #495057 !important; /* Texto más oscuro para mejor contraste */
+  line-height: 1.6;
+}
+
+.bootcamp-card h6 {
+  color: var(--color-primary) !important;
+  font-weight: 600;
+}
+
+/* Corrección para las feature cards */
+.feature-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid rgba(58, 0, 135, 0.1);
+  color: #212529 !important; /* Texto oscuro para máximo contraste */
+}
+
+.feature-card h4 {
+  color: var(--color-primary) !important;
+  font-weight: 700;
+}
+
+.feature-card p {
+  color: #495057 !important; /* Texto más oscuro para mejor contraste */
+  line-height: 1.6;
+}
+
+/* Mejora de contraste para badges */
+.badge {
+  font-weight: 600;
+  padding: 0.5em 0.8em;
+}
+
+/* Mejoras de sombra para mejor contraste visual */
+.bootcamp-card,
+.feature-card {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08) !important;
+}
+
+.bootcamp-card:hover,
+.feature-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Asegurar contraste en todos los dispositivos */
+@media (max-width: 768px) {
+  .bootcamp-card,
+  .feature-card {
+    background: #ffffff !important; /* Fondo blanco sólido en móviles */
+  }
+}
+
+/* Corrección para el texto en el overlay de la card */
+.card-overlay .badge {
+  background-color: var(--color-button) !important;
+  color: white !important;
+  font-size: 0.9rem;
+}
+
+/* Mejora de contraste para el texto de tecnologías */
+.tech-tag {
+  background-color: var(--color-secondary) !important;
+  color: white !important;
+  font-weight: 500;
+}
+
+.tech-tag:hover {
+  background-color: var(--color-primary) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/******************************************************************************************/
