@@ -30,7 +30,7 @@ function CreateForm({ onCreated }){
       description: values.description,
       technologies: values.technologies ? values.technologies.split(',').map(s=>s.trim()).filter(Boolean) : []
     }
-    await api.post('/api/auth/bootcamps/create', payload)
+    await api.post('/auth/bootcamps/create', payload)
     reset()
     onCreated?.()
   }
@@ -74,7 +74,7 @@ function EditForm({ current, onCancel, onSaved }){
       description: values.description,
       technologies: values.technologies ? values.technologies.split(',').map(s=>s.trim()).filter(Boolean) : []
     }
-    await api.put(`/api/auth/bootcamps/update/${current._id || current.id}`, payload)
+    await api.put(`/auth/bootcamps/update/${current._id || current.id}`, payload)
     onSaved?.()
   }
   return (
@@ -109,7 +109,7 @@ export function Dashboard(){
   const load = async () => {
     setLoading(true); setError(null)
     try{
-      const { data } = await api.get('/api/auth/bootcamps/all')
+      const { data } = await api.get('/auth/bootcamps/all')
       setBootcamps(Array.isArray(data) ? data : (data?.bootcamps || []))
     }catch(e){
       setError(e?.response?.data?.message || e.message)
@@ -122,7 +122,7 @@ export function Dashboard(){
 
   const handleDelete = async (item) => {
     if (!confirm(`¿Desactivar "${item.name}"?`)) return
-    await api.delete(`/api/auth/bootcamps/delete/${item._id || item.id}`)
+    await api.delete(`/auth/bootcamps/delete/${item._id || item.id}`)
     await load()
   }
 

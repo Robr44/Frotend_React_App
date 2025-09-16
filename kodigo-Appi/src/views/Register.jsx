@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import api from "../api/axios";
 import { useNavigate, Link } from "react-router-dom";
 
 const RegisterPage = () => {
@@ -14,8 +14,7 @@ const RegisterPage = () => {
 
   const onSubmit = async (data) => {
     try {
-      const API_URL = "http://localhost:3000/api/auth/register";
-      await axios.post(API_URL, data);
+      await api.post("/auth/register", data);
 
       alert("¡Registro exitoso! Ahora puedes iniciar sesión.");
       reset();
