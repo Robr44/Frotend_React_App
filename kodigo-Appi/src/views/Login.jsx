@@ -72,7 +72,7 @@ export const Login = () => {
     setLoginError('');
 
     try {
-      const response = await api.post('/auth/login', {
+      const response = await api.post('/login', {
         username: formData.username.trim(),
         password: formData.password
       });

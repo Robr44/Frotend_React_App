@@ -14,7 +14,7 @@ const RegisterPage = () => {
 
   const onSubmit = async (data) => {
     try {
-      await api.post("/auth/register", data);
+      await api.post("/register", data);
 
       alert("¡Registro exitoso! Ahora puedes iniciar sesión.");
       reset();
